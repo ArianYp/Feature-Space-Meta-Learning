@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Data, caches, and generated artifacts
+cache/
+cache_*/
+logs/
+checkpoints*/
+*.model
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+resnet_*_features.pt
+
+# Datasets
+Dominoes_SP90*/
+metashifts/
+waterbird*/
+celeba/
+data/
+
+# Slurm / cluster
+slurm-*.out
+*.slurm
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
