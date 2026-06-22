@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="HSFM: Hard-Set-Guided Feature-Space Meta-Learning for Robust Classification under Spurious Correlations">
+  <meta property="og:title" content="HSFM: Hard-Set-Guided Feature-Space Meta-Learning"/>
+  <meta property="og:description" content="Bilevel meta-learning in feature space for robust classification under spurious correlations. ECCV 2026."/>
+  <meta property="og:url" content="https://arianyp.github.io/Feature-Space-Meta-Learning/"/>
+  <meta property="og:image" content="static/images/figure1.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <meta name="twitter:title" content="HSFM: Feature-Space Meta-Learning">
+  <meta name="twitter:description" content="ECCV 2026">
+  <meta name="twitter:image" content="static/images/figure1.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="spurious correlations, robust classification, meta-learning, feature-space augmentation, worst-group accuracy, HSFM">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>HSFM: Hard-Set-Guided Feature-Space Meta-Learning</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">HSFM: Hard-Set-Guided Feature-Space Meta-Learning for Robust Classification under Spurious Correlations</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=7EtxHvgAAAAJ&hl=en" target="_blank">Aryan Yazdan Parast</a>,
+              </span>
+              <span class="author-block">Khawar Islam,</span>
+              <span class="author-block">Soyoun Won,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=LpJ-inAAAAAJ&hl=en" target="_blank">Basim Azam</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=Xqmlj18AAAAJ&hl=en" target="_blank">Naveed Akhtar</a>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">The University of Melbourne, Melbourne, Australia<br>ECCV 2026</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://github.com/ArianYp/Feature-Space-Meta-Learning" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2603.29313" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Deep neural networks often rely on spurious features to make predictions, which makes them brittle under distribution shift and on samples where the spurious correlation does not hold (e.g., minority-group examples). Recent studies have shown that, even in such settings, the feature extractor of an Empirical Risk Minimization (ERM)-trained model can learn rich and informative representations, and that much of the failure may be attributed to the classifier head. In particular, retraining a lightweight head while keeping the backbone frozen can substantially improve performance on shifted distributions and minority groups. Motivated by this observation, we propose a bilevel meta-learning method that performs augmentation directly in feature space to improve spurious correlation handling in the classifier head. Our method learns support-side feature edits such that, after a small number of inner-loop updates on the edited features, the classifier achieves lower loss on hard examples and improved worst-group performance. By operating at the backbone output rather than in pixel space or through end-to-end optimization, the method is highly efficient and stable, requiring only a few minutes of training on a single GPU. We further validate our method with CLIP-based visualizations, showing that the learned feature-space updates induce semantically meaningful shifts aligned with spurious attributes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-fifths">
+          <h2 class="title is-3">Method</h2>
+        </div>
+      </div>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-fifths">
+          <div class="content has-text-justified">
+            <img src="static/images/figure1.png" alt="HSFM overview" style="width: 100%; height: auto;">
+            <p><b>Figure 1.</b> Overview of HSFM. (a) Initial training samples are passed through a frozen ERM feature extractor to obtain support embeddings. The linear head is adapted on the support set through the inner loss, and the outer loss is computed on the hard set. (b) Flowchart of the training procedure.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-fifths">
+          <h2 class="title is-3">Main Results</h2>
+          <p>Worst-group and average accuracy on spurious-correlation benchmarks with a ResNet-50 backbone. Best overall in <b>bold</b>; best without group labels during training <u>underlined</u>.</p>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th colspan="2">Waterbirds</th>
+                  <th colspan="2">CelebA</th>
+                  <th colspan="2">MetaShift</th>
+                  <th colspan="2">Dominoes</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th>Worst</th><th>Avg</th>
+                  <th>Worst</th><th>Avg</th>
+                  <th>Worst</th><th>Avg</th>
+                  <th>Worst</th><th>Avg</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Base (ERM)</td>
+                  <td>74.6</td><td>90.21</td>
+                  <td>30.6</td><td>95.83</td>
+                  <td>64.1</td><td>75.65</td>
+                  <td>78.6</td><td>88.83</td>
+                </tr>
+                <tr>
+                  <td>DFR</td>
+                  <td>92.3±0.2</td><td>93.3±0.5</td>
+                  <td>88.3±1.1</td><td>91.3±0.3</td>
+                  <td>72.8±0.6</td><td>77.5±0.6</td>
+                  <td>90.0±0.4</td><td>92.3±0.2</td>
+                </tr>
+                <tr>
+                  <td>DaC</td>
+                  <td>92.3±0.4</td><td>95.3±0.4</td>
+                  <td>81.9±0.7</td><td>91.4±1.1</td>
+                  <td>78.3±1.6</td><td>79.3±0.1</td>
+                  <td>89.2±0.1</td><td>92.2±0.3</td>
+                </tr>
+                <tr>
+                  <td>DDB</td>
+                  <td>93.0±0.1</td><td>93.6±0.1</td>
+                  <td>85.8±1.4</td><td>87.3±0.7</td>
+                  <td>81.2±0.2</td><td>81.3±0.2</td>
+                  <td>-</td><td>-</td>
+                </tr>
+                <tr>
+                  <td><b>HSFM (ours)</b></td>
+                  <td><b>93.1±0.1</b></td><td>94.0±0.5</td>
+                  <td><u>89.2±0.2</u></td><td>90.6±0.5</td>
+                  <td>77.2±0.1</td><td>77.4±0.0</td>
+                  <td><b>90.4±0.3</b></td><td>92.9±0.2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-fifths">
+          <h2 class="title is-3">unCLIP Visualization</h2>
+        </div>
+      </div>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-fifths">
+          <div class="content has-text-justified">
+            <img src="static/images/figure2.png" alt="unCLIP visualization" style="width: 100%; height: auto;">
+            <p><b>Figure 2.</b> Visualization of original images, SD unCLIP outputs from initial embeddings, and outputs from optimized embeddings. Feature-space edits align with spurious attributes (background on Waterbirds; gender on CelebA).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-fifths">
+          <h2 class="title is-3">Ablations</h2>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <img src="static/images/figure3.png" alt="Ablation on T" style="width: 100%; height: auto;">
+          <p><b>Figure 3.</b> Worst-group accuracy under different values of T on Waterbirds.</p>
+        </div>
+        <div class="column is-half">
+          <img src="static/images/figure4.png" alt="Ablation on support set size" style="width: 100%; height: auto;">
+          <p><b>Figure 4.</b> Worst-group accuracy under different support set sizes on CelebA.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@InProceedings{Parast2026ECCV,
+  author    = {Parast, Aryan Yazdan and Islam, Khawar and Won, Soyoun and Azam, Basim and Akhtar, Naveed},
+  title     = {{HSFM}: Hard-Set-Guided Feature-Space Meta-Learning for Robust Classification under Spurious Correlations},
+  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
+  year      = {2026},
+}
+
+@article{Parast2026HSFM,
+  title   = {{HSFM}: Hard-Set-Guided Feature-Space Meta-Learning for Robust Classification under Spurious Correlations},
+  author  = {Parast, Aryan Yazdan and Islam, Khawar and Won, Soyoun and Azam, Basim and Akhtar, Naveed},
+  journal = {arXiv preprint arXiv:2603.29313},
+  year    = {2026},
+}</code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>, adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              <br> This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
